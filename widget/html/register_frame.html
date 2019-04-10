@@ -17,7 +17,7 @@
         padding-top: 40px;
         border-bottom: 1px solid #888;
     }
-    
+
     .input {
         width: 100%;
         height: 20px;
@@ -25,7 +25,7 @@
         border: none;
         font-size: 16px;
     }
-    
+
     .btn {
         width: auto;
         height: 50px;
@@ -39,7 +39,7 @@
         text-align: center;
         border-radius: 8px;
     }
-    
+
     .highlight {
         opacity: 0.7;
     }
@@ -65,14 +65,11 @@ apiready = function() {
 
 // 如果使用APICloud数据云，可以使用APICloud数据云前端框架来简化网络通信
 function fnRegisterByAPICloudMCM() {
-    var now = Date.now();
-var appKey = $.SHA1("A6009254711536"+"UZ"+"19C981C6-51F1-62BF-BFF6-E5969D73F4CE"+"UZ"+now)+"."+now
-    
     var username = $api.byId('username');
     var password = $api.byId('password');
     var usernameValue = username.value;
     var passwordValue = password.value;
-    var client = new Resource("A6009254711536", "19C981C6-51F1-62BF-BFF6-E5969D73F4CE");
+    var client = new Resource("A6924679989633", "445E96D3-ADC4-AB6E-2348-5096E5BAA9AE");
     var User = client.Factory("user");
     User.save({
         "username": usernameValue,
@@ -80,7 +77,7 @@ var appKey = $.SHA1("A6009254711536"+"UZ"+"19C981C6-51F1-62BF-BFF6-E5969D73F4CE"
     }, function(ret, err) {
         api.alert({
             title: '提示',
-            msg: appKey,
+            msg: '注册成功',
         }, function(ret, err) {
             if (ret) {
                 api.execScript({
@@ -102,7 +99,7 @@ function fnRegister() {
     var usernameValue = username.value;
     var passwordValue = password.value;
     var now = Date.now();
-    var appKey = SHA1("A6009254711536"+"UZ"+"19C981C6-51F1-62BF-BFF6-E5969D73F4CE"+"UZ"+now)+"."+now
+var appKey = $.SHA1("A6009254711536"+"UZ"+"19C981C6-51F1-62BF-BFF6-E5969D73F4CE"+"UZ"+now)+"."+now
     api.ajax({
         url: 'https://d.apicloud.com/mcm/api/user',
         method: 'post',
@@ -121,7 +118,7 @@ function fnRegister() {
             //alert(JSON.stringify(ret));
             api.alert({
                 title: '提示',
-                msg: appKey,
+                msg: '注册成功',
             }, function(ret, err) {
                 if (ret) {
                     api.execScript({

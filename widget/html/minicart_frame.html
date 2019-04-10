@@ -13,7 +13,7 @@
         height: 100%;
         background-color: transparent;
     }
-    
+
     section {
         display: inline-block;
         box-sizing: border-box;
@@ -29,7 +29,7 @@
         background-size: auto 33px;
         background-position: right center;
     }
-    
+
     .count {
         display: none;
         box-sizing: border-box;
@@ -58,7 +58,7 @@
 <script type="text/javascript">
 apiready = function() {
     initEventListenner();
-   // getWareListFromDB();
+    getWareListFromDB();
 };
 
 function initEventListenner() {
@@ -78,7 +78,7 @@ function initEventListenner() {
             } else {
                 $db.insert(ret.value.wareId, ret.value.wareCount);
             }
-          //  getWareListFromDB();
+            getWareListFromDB();
         } else {
             alert(JSON.stringify(err));
         }
@@ -95,12 +95,12 @@ function fnOpenShoppingCartWin() {
     });
 }
 
-// function getWareListFromDB() {
-//     var ret = $db.select();
-//     if (ret && ret.data.length > 0) {
-//         fnGetWareList(ret.data);
-//     }
-// }
+function getWareListFromDB() {
+    var ret = $db.select();
+    if (ret && ret.data.length > 0) {
+        fnGetWareList(ret.data);
+    }
+}
 
 function fnGetWareList(wareList_) {
     var wares = [];
@@ -119,12 +119,14 @@ function fnGetWareList(wareList_) {
         limit: wares.length
     }
     params = $api.jsonToStr(params);
+    var now = Date.now();
+var appKey = $.SHA1("A6009254711536"+"UZ"+"19C981C6-51F1-62BF-BFF6-E5969D73F4CE"+"UZ"+now)+"."+now
     api.ajax({
         url: 'http://d.apicloud.com/mcm/api/ware?filter=' + params,
         method: 'get',
         headers: {
-            "X-APICloud-AppId": "A6914327011091",
-            "X-APICloud-AppKey": "8ac17d22e49cb7982d82796097cec52a6c7cd01d.1475375422841"
+            "X-APICloud-AppId": "A6009254711536",
+            "X-APICloud-AppKey": appKey
         }
     }, function(ret, err) {
         if (ret) {
