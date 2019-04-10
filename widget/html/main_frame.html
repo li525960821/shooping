@@ -307,8 +307,8 @@ apiready = function() {
     init();
     initEventListenter();
     initRefresh();
-    fnUpdateBanner();
-    fnGetWareList();
+   // fnUpdateBanner();
+   // fnGetWareList();
 };
 
 var currentCity, wareTypeList;
@@ -327,7 +327,7 @@ function initEventListenter() {
             threshold: 300
         }
     }, function(ret, err) {
-        fnGetWareList(true);
+       // fnGetWareList(true);
     });
     api.addEventListener({
         name: 'cityChange'
@@ -336,7 +336,7 @@ function initEventListenter() {
             //alert(JSON.stringify(ret));
             if (ret.value) {
                 currentCity = ret.value.currentCity;
-                fnGetWareList();
+               // fnGetWareList();
             }
         } else {
             alert(JSON.stringify(err));
@@ -354,7 +354,7 @@ function initRefresh() {
         textUp: '松开刷新...',
         showTime: true
     }, function(ret, err) {
-        fnGetWareList();
+       // fnGetWareList();
     });
 }
 
@@ -368,55 +368,55 @@ function fnOpenWareWin(wareId_) {
     });
 }
 
-function fnUpdateBanner() {
-    var banner = $api.byId('banner');
-    api.imageCache({
-        url: wareTypeList[api.pageParam.wareTypeIndex].banner.url
-    }, function(ret, err) {
-        if (ret) {
-            //alert(JSON.stringify(ret));
-            if (ret && ret.status) {
-                banner.src = ret.url;
-            }
-        } else {
-            alert(JSON.stringify(err));
-        }
-    });
-}
+// function fnUpdateBanner() {
+//     var banner = $api.byId('banner');
+//     api.imageCache({
+//         url: wareTypeList[api.pageParam.wareTypeIndex].banner.url
+//     }, function(ret, err) {
+//         if (ret) {
+//             //alert(JSON.stringify(ret));
+//             if (ret && ret.status) {
+//                 banner.src = ret.url;
+//             }
+//         } else {
+//             alert(JSON.stringify(err));
+//         }
+//     });
+// }
 
-function fnGetWareList(loadMore_) {
-    if (loadMore_) {
-        skip += LIMIT;
-    } else {
-        skip = 0;
-    }
-    var params = {
-        fields: {},
-        where: {
-            supportAreaId: currentCity.id,
-            wareTypeId: wareTypeList[api.pageParam.wareTypeIndex].id
-        },
-        skip: skip,
-        limit: LIMIT
-    }
-    params = $api.jsonToStr(params);
-    api.ajax({
-        url: 'http://d.apicloud.com/mcm/api/ware?filter=' + params,
-        method: 'get',
-        headers: {
-            "X-APICloud-AppId": "A6914327011091",
-            "X-APICloud-AppKey": "8ac17d22e49cb7982d82796097cec52a6c7cd01d.1475375422841"
-        }
-    }, function(ret, err) {
-        if (ret) {
-            //console.log($api.jsonToStr(ret));
-            api.refreshHeaderLoadDone();
-            fnUpdateWareList(ret, loadMore_);
-        } else {
-            //alert(JSON.stringify(err));
-        }
-    });
-}
+// function fnGetWareList(loadMore_) {
+//     if (loadMore_) {
+//         skip += LIMIT;
+//     } else {
+//         skip = 0;
+//     }
+//     var params = {
+//         fields: {},
+//         where: {
+//             supportAreaId: currentCity.id,
+//             wareTypeId: wareTypeList[api.pageParam.wareTypeIndex].id
+//         },
+//         skip: skip,
+//         limit: LIMIT
+//     }
+//     params = $api.jsonToStr(params);
+//     api.ajax({
+//         url: 'http://d.apicloud.com/mcm/api/ware?filter=' + params,
+//         method: 'get',
+//         headers: {
+//             "X-APICloud-AppId": "A6914327011091",
+//             "X-APICloud-AppKey": "8ac17d22e49cb7982d82796097cec52a6c7cd01d.1475375422841"
+//         }
+//     }, function(ret, err) {
+//         if (ret) {
+//             //console.log($api.jsonToStr(ret));
+//             api.refreshHeaderLoadDone();
+//             fnUpdateWareList(ret, loadMore_);
+//         } else {
+//             //alert(JSON.stringify(err));
+//         }
+//     });
+// }
 
 function fnLoadImage(ele_) {
     var dataUrl = $api.attr(ele_, 'data-url');

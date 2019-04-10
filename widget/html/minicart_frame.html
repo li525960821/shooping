@@ -58,7 +58,7 @@
 <script type="text/javascript">
 apiready = function() {
     initEventListenner();
-    getWareListFromDB();
+   // getWareListFromDB();
 };
 
 function initEventListenner() {
@@ -78,7 +78,7 @@ function initEventListenner() {
             } else {
                 $db.insert(ret.value.wareId, ret.value.wareCount);
             }
-            getWareListFromDB();
+          //  getWareListFromDB();
         } else {
             alert(JSON.stringify(err));
         }
@@ -95,12 +95,12 @@ function fnOpenShoppingCartWin() {
     });
 }
 
-function getWareListFromDB() {
-    var ret = $db.select();
-    if (ret && ret.data.length > 0) {
-        fnGetWareList(ret.data);
-    }
-}
+// function getWareListFromDB() {
+//     var ret = $db.select();
+//     if (ret && ret.data.length > 0) {
+//         fnGetWareList(ret.data);
+//     }
+// }
 
 function fnGetWareList(wareList_) {
     var wares = [];

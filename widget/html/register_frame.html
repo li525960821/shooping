@@ -65,11 +65,14 @@ apiready = function() {
 
 // 如果使用APICloud数据云，可以使用APICloud数据云前端框架来简化网络通信
 function fnRegisterByAPICloudMCM() {
+    var now = Date.now();
+var appKey = $.SHA1("A6009254711536"+"UZ"+"19C981C6-51F1-62BF-BFF6-E5969D73F4CE"+"UZ"+now)+"."+now
+    
     var username = $api.byId('username');
     var password = $api.byId('password');
     var usernameValue = username.value;
     var passwordValue = password.value;
-    var client = new Resource("A6924679989633", "445E96D3-ADC4-AB6E-2348-5096E5BAA9AE");
+    var client = new Resource("A6009254711536", "19C981C6-51F1-62BF-BFF6-E5969D73F4CE");
     var User = client.Factory("user");
     User.save({
         "username": usernameValue,
@@ -77,7 +80,7 @@ function fnRegisterByAPICloudMCM() {
     }, function(ret, err) {
         api.alert({
             title: '提示',
-            msg: '注册成功',
+            msg: appKey,
         }, function(ret, err) {
             if (ret) {
                 api.execScript({
@@ -98,13 +101,14 @@ function fnRegister() {
     var password = $api.byId('password');
     var usernameValue = username.value;
     var passwordValue = password.value;
-
+    var now = Date.now();
+    var appKey = SHA1("A6009254711536"+"UZ"+"19C981C6-51F1-62BF-BFF6-E5969D73F4CE"+"UZ"+now)+"."+now
     api.ajax({
         url: 'https://d.apicloud.com/mcm/api/user',
         method: 'post',
         headers: {
-            "X-APICloud-AppId": "A6914327011091",
-            "X-APICloud-AppKey": "8ac17d22e49cb7982d82796097cec52a6c7cd01d.1475375422841"
+            "X-APICloud-AppId": "A6009254711536",
+            "X-APICloud-AppKey": appKey
         },
         data: {
             values: {
@@ -117,7 +121,7 @@ function fnRegister() {
             //alert(JSON.stringify(ret));
             api.alert({
                 title: '提示',
-                msg: '注册成功',
+                msg: appKey,
             }, function(ret, err) {
                 if (ret) {
                     api.execScript({
